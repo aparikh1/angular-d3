@@ -3,10 +3,10 @@
     <head>
         <title>Flash Cards</title>
         <!-- We've provided some styles for you, aren't we nice? -->
-        <link rel="stylesheet" type="text/css" href="reset.css" />
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
     </head>
-    <body ng-app="flashCards" >
+    <body ng-app="flashCards">
 
         <div ng-controller="ScoreController">
             Correct: {{ score.correct }}
@@ -24,11 +24,13 @@
                     Reset
                 </button>
             </div>
-
-        	<div
-        		ng-repeat="flashCard in flashCards | orderBy : 'question'"
-        		class="flash-card">
-        	    <h1>{{ flashCard.question | uppercase }}</h1>
+            
+            <loader ng-show="loaderOn"></loader>
+            <flash-card card="flashCard" ng-repeat="flashCard in flashCards | orderBy : 'question'"></flash-card>            
+            <!-- <div
+                ng-repeat="flashCard in flashCards | orderBy : 'question'"
+                class="flash-card">
+                <h1>{{ flashCard.question | uppercase }}</h1>
         	    <ul class="flash-card-answers">
         	    	<li
         	    		ng-repeat="answer in flashCard.answers"
@@ -42,13 +44,16 @@
         	        <span ng-show="flashCard.answeredCorrectly">Yeah, you got it right!</span>
         	        <span ng-show="!flashCard.answeredCorrectly">Nope, you got it wrong.</span>
         	    </h2>
-        	</div>
+        	</div> -->
         </div>
-    	<script src="angular.js"></script>
-    	<script src="app.js"></script>
-        <script src="main.controller.js"></script>
-        <script src="factories/cards.factory.js"></script>
-        <script src="factories/score.factory.js"></script>
-    	<script src="controllers/score.controller.js"></script>
+    	<script src="lib/angular.js"></script>
+    	<script src="js/app.js"></script>
+        <script src="js/controllers/main.controller.js"></script>
+        <script src="js/factories/cards.factory.js"></script>
+        <script src="js/factories/score.factory.js"></script>
+    	<script src="js/controllers/score.controller.js"></script>
+        <script src="js/directives/loader/loader.js"></script>
+        <script src="js/directives/flash-card/flash-card.js"></script>
+        <script src="js/directives/border-on-hover/border-on-hover.js"></script>
     </body>
 </html>
